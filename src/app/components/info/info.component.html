@@ -1,0 +1,64 @@
+<div id="info" class="container">
+  <div class="row justify-content-between">
+    <div class="col-1">
+      <button mat-fab color="warn" (click)="goBack()"><</button>
+    </div>
+    <div *ngIf="item" class="col-2">
+      <h2 *ngIf="item.name && item.id">{{item.name}}</h2>
+      <h2 *ngIf="item.title && item.id">{{item.title}}</h2>
+      <h2 *ngIf="!item.id">New</h2>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div *ngIf="selectedService === 'jobs'">
+      <form class="col-12 center" #jobForm="ngForm" (ngSubmit)="onSubmit(jobForm)">
+        <mat-form-field class="row">
+          <input matInput placeholder="Title:" class="col"type="text" name="title" [(ngModel)]="item.title" required>
+        </mat-form-field>
+        <mat-form-field class="row">
+          <input matInput placeholder="Description:" type="text" name="description" [(ngModel)]="item.description" required>
+        </mat-form-field>
+        <button  mat-raised-button color="primary" type="submit" [disabled]="!jobForm.valid">Submit</button>
+      </form>
+    </div>
+
+    <form class="col-12 center" #userForm="ngForm" (ngSubmit)="onSubmit(userForm)" *ngIf="selectedService === 'users'">
+      <mat-form-field class="row">
+        <input matInput placeholder="Name:" type="text" name="name" [(ngModel)]="item.name" required>
+      </mat-form-field>
+
+      <mat-form-field class="row">
+        <input matInput date placeholder="Date of birth:" type="date" name="dateOfBirth" [(ngModel)]="item.dateOfBirth" required>
+      </mat-form-field>
+
+      <mat-form-field class="row">
+        <input matInput email placeholder="E-mail:" type="email" name="email" [(ngModel)]="item.email" required>
+
+      </mat-form-field>
+
+      <div>
+        <label id="status">Gender:</label>
+        <mat-radio-group aria-labelledby="status" class="example-radio-group" [(ngModel)]="item.status" name="status" required>
+          <mat-radio-button value="male">
+            Male
+          </mat-radio-button>
+          <mat-radio-button value="female">
+            Female
+          </mat-radio-button>
+          <mat-radio-button value="other">
+            Other
+          </mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <mat-form-field class="row">
+        <input matInput placeholder="Hourly rate:" type="number" [id]="hourlyRate" name="hourlyRate"
+               [(ngModel)]="item.hourlyRate" #hourlyRate="ngModel" required>
+      </mat-form-field>
+
+
+      <button mat-raised-button color="primary" type="submit" [disabled]="!userForm.valid">Submit</button>
+
+    </form>
+  </div>
+</div>

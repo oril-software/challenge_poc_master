@@ -1,0 +1,7 @@
+<header id="header">
+  <div mat-tab-nav-bar>
+    <a mat-tab-link *ngFor="let tab of tabs" routerLink="/{{tab | lowercase}}">
+      {{tab}}
+    </a>
+  </div>
+</header>

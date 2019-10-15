@@ -1,0 +1,29 @@
+<div id="users">
+  <div class="container">
+    <div class="row justify-content-between">
+      <div class="col"><h1>Users</h1></div>
+      <div class="col-1">
+        <button mat-fab color="primary" routerLink="/users/0"> Add new</button>
+      </div>
+    </div>
+    <ul>
+      <li>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 15px">
+          <h3>Title</h3>
+          <h3>Description</h3>
+          <h3>Action</h3>
+        </div>
+      </li>
+      <li *ngFor="let item of selectedList">
+        <div style="display: flex; justify-content: space-between">
+          <div>{{item.name}}</div>
+          <div>{{item.email}}</div>
+          <div style="display: flex">
+            <button mat-raised-button [routerLink]="'/users/'+ item.id">Update</button>
+            <button mat-button color="warn" (click)="deleteItem(item)">Delete</button>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
